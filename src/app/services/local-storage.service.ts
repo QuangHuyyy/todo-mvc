@@ -16,7 +16,7 @@ export class LocalStorageService {
     return this.storage[key] || false;
   }
 
-  setObject(key: string, value: string): void {
+  setObject(key: string, value: any): void {
     if (!value) {
       return;
     }
@@ -28,7 +28,7 @@ export class LocalStorageService {
   }
 
   getValue<T>(key: string): T {
-    const obj = JSON.parse(this.storage[key]) || null;
+    const obj = JSON.parse(this.storage[key] || null);
     return <T>obj;
   }
 
