@@ -50,6 +50,7 @@ export class TodoItemComponent implements OnInit {
     even.preventDefault(); // Loại bỏ sự kiện mặc định của Form (ở đây là sự kiện Enter)
     if (keyCode == 13) {
       // nếu phím nhấn xuống là phím Enter
+      alert('huhu');
       this.editTodo.emit(this.todo);
     }
   }

@@ -28,7 +28,7 @@ export class TodoService {
   fetchFromLocalStorage() {
     this.todos =
       this.storageService.getValue<Todo[]>(TodoService.TodoStorageKey) || [];
-    this.filteredTodos = [...this.todos];
+    this.filteredTodos = [...this.todos.map((todo) => ({ ...todo }))];
     this.updateTodosData();
   }
 
@@ -48,7 +48,7 @@ export class TodoService {
         this.filteredTodos = this.todos.filter((todo) => todo.isCompleted);
         break;
       case Filter.ALL:
-        this.filteredTodos = [...this.todos];
+        this.filteredTodos = [...this.todos.map((todo) => ({ ...todo }))];
         break;
     }
 
@@ -92,6 +92,11 @@ export class TodoService {
         isCompleted: !this.todos.every((t) => t.isCompleted),
       };
     });
+    this.updateToLocalStorage();
+  }
+
+  clearCompleted() {
+    this.todos = this.todos.filter((todo) => !todo.isCompleted);
     this.updateToLocalStorage();
   }
 

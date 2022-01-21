@@ -6,8 +6,9 @@
     </span>
     <div>
       <button type="button" class="filter-btn" *ngFor="let btn of filterButtons"
-        [ngClass]="{'isActive': btn.isActive}">{{btn.label}}</button>
+        [ngClass]="{'isActive': btn.isActive}" (click)="filter(btn.type)">{{btn.label}}</button>
     </div>
-    <button type="button" class="filter-btn clear-completed-btn">Clear Completed</button>
+    <button type="button" class="filter-btn clear-completed-btn" [ngClass]="{'visible': hasCompleted$ | async}" (click)="clearCompleted()">Clear
+      Completed</button>
   </div>
 </footer>
